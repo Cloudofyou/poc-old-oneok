@@ -1,0 +1,197 @@
+---
+- hosts: internet
+  tasks:
+   - name: Configure switch to act as campus/internet
+     nclu:
+       commands:
+
+         - add loopback lo ip address 192.168.100.1/32
+         - add vlan 10 ip address 192.168.200.1/24
+         - add vlan 20 ip address 192.168.201.1/24
+         - add vlan 30 ip address 192.168.202.1/24
+         - add vlan 40 ip address 192.168.203.1/24
+         - add interface swp1 ip address 172.17.0.2/30
+         - add interface swp2 ip address 172.17.0.6/30
+         - add ospf router-id 192.168.100.1
+         - add ospf network 172.17.0.0/30 area 0.0.0.0
+         - add ospf network 172.17.0.4/30 area 0.0.0.0
+         - add ospf network 192.168.0.0/16 area 0.0.0.0
+
+       commit: true
+
+- hosts: cisco9500-01
+  tasks:
+   - name: Configure cisco9500-01 to connect to POC network
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.1/32
+         - add bgp autonomous-system 65001
+         - add interface swp1 ip address 172.16.0.0/31
+         - add interface swp2 ip address 172.17.0.1/30
+         - add interface swp3 ip address 172.16.0.4/31
+         - add bgp neighbor 172.16.0.1 remote-as 65100
+         - add bgp neighbor 172.16.0.5 remote-as 65001
+         - add bgp network 172.31.255.1/32
+         - add bgp network 172.16.0.0/31
+         - add ospf router-id 172.31.255.1
+         - add ospf network 172.17.0.0/30 area 0.0.0.0
+         - add bgp redistribute ospf metric 100
+
+       commit: true
+
+- hosts: cisco9500-02
+  tasks:
+   - name: Configure cisco9500-02 to connect to POC network
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.2/32
+         - add bgp autonomous-system 65001
+         - add interface swp1 ip address 172.16.0.2/31
+         - add interface swp2 ip address 172.17.0.5/30
+         - add interface swp3 ip address 172.16.0.5/31
+         - add bgp neighbor 172.16.0.3 remote-as 65100
+         - add bgp neighbor 172.16.0.4 remote-as 65001
+         - add bgp network 172.31.255.2/32
+         - add bgp network 172.16.0.2/31
+         - add ospf router-id 172.31.255.2
+         - add ospf network 172.17.0.4/30 area 0.0.0.0
+         - add bgp redistribute ospf metric 200
+
+       commit: true
+
+- hosts: cisco9500-01
+  tasks:
+   - name: Configure cisco9500-01 to connect to POC network
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.1/32
+         - add bgp autonomous-system 65001
+         - add interface swp1 ip address 172.16.0.0/31
+         - add interface swp2 ip address 172.17.0.1/30
+         - add interface swp3 ip address 172.16.0.4/31
+         - add bgp neighbor 172.16.0.1 remote-as 65100
+         - add bgp neighbor 172.16.0.5 remote-as 65001
+         - add bgp network 172.31.255.1/32
+         - add bgp network 172.16.0.0/31
+         - add ospf router-id 172.31.255.1
+         - add ospf network 172.17.0.0/30 area 0.0.0.0
+         - add bgp redistribute ospf metric 100
+
+       commit: true
+
+- hosts: spine01
+  tasks:
+   - name: Configure spine01
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.3/32
+         - add bgp autonomous-system 65100
+         - add interface swp10 ip address 172.16.0.1/31
+         - add bgp neighbor 172.16.0.0 remote-as 65001
+         - add bgp network 172.31.255.3/32
+         - add bgp network 172.16.0.0/31
+         - add bgp neighbor LEAFS peer-group
+         - add bgp neighbor LEAFS remote-as external
+         - add bgp neighbor LEAFS capability extended-nexthop
+         - add bgp neighbor LEAFS description Internal Fabric Network
+         - add bgp neighbor swp1-4 interface peer-group LEAFS
+         - add bgp bestpath as-path multipath-relax
+
+       commit: true
+
+- hosts: spine02
+  tasks:
+   - name: Configure spine02
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.4/32
+         - add bgp autonomous-system 65100
+         - add interface swp10 ip address 172.16.0.3/31
+         - add bgp neighbor 172.16.0.2 remote-as 65001
+         - add bgp network 172.31.255.4/32
+         - add bgp network 172.16.0.2/31
+         - add bgp neighbor LEAFS peer-group
+         - add bgp neighbor LEAFS remote-as external
+         - add bgp neighbor LEAFS capability extended-nexthop
+         - add bgp neighbor LEAFS description Internal Fabric Network
+         - add bgp neighbor swp1-4 interface peer-group LEAFS
+         - add bgp bestpath as-path multipath-relax
+
+       commit: true
+
+- hosts: leaf01
+  tasks:
+   - name: Configure leaf01
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.5/32
+         - add bgp autonomous-system 65201
+         - add bgp network 172.31.255.5/32
+         - add bgp neighbor SPINES peer-group
+         - add bgp neighbor SPINES remote-as external
+         - add bgp neighbor SPINES capability extended-nexthop
+         - add bgp neighbor SPINES description Internal Fabric Network
+         - add bgp neighbor swp53-54 interface peer-group SPINES
+         - add bgp bestpath as-path multipath-relax
+
+       commit: true
+
+- hosts: leaf02
+  tasks:
+   - name: Configure leaf02
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.6/32
+         - add bgp autonomous-system 65202
+         - add bgp network 172.31.255.6/32
+         - add bgp neighbor SPINES peer-group
+         - add bgp neighbor SPINES remote-as external
+         - add bgp neighbor SPINES capability extended-nexthop
+         - add bgp neighbor SPINES description Internal Fabric Network
+         - add bgp neighbor swp51-52 interface peer-group SPINES
+         - add bgp bestpath as-path multipath-relax
+
+       commit: true
+
+- hosts: leaf03
+  tasks:
+   - name: Configure leaf03
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.7/32
+         - add bgp autonomous-system 65203
+         - add bgp network 172.31.255.7/32
+         - add bgp neighbor SPINES peer-group
+         - add bgp neighbor SPINES remote-as external
+         - add bgp neighbor SPINES capability extended-nexthop
+         - add bgp neighbor SPINES description Internal Fabric Network
+         - add bgp neighbor swp51-52 interface peer-group SPINES
+         - add bgp bestpath as-path multipath-relax
+
+       commit: true
+
+- hosts: leaf04
+  tasks:
+   - name: Configure leaf04
+     nclu:
+       commands:
+
+         - add loopback lo ip address 172.31.255.8/32
+         - add bgp autonomous-system 65204
+         - add bgp network 172.31.255.8/32
+         - add bgp neighbor SPINES peer-group
+         - add bgp neighbor SPINES remote-as external
+         - add bgp neighbor SPINES capability extended-nexthop
+         - add bgp neighbor SPINES description Internal Fabric Network
+         - add bgp neighbor swp51-52 interface peer-group SPINES
+         - add bgp bestpath as-path multipath-relax
+
+       commit: true
