@@ -15,6 +15,7 @@ graph site {
 "internet":"swp2" -- "cisco9500-02":"swp2"
 "cisco9500-01":"swp1" -- "spine01":"swp10"
 "cisco9500-02":"swp1" -- "spine02":"swp10"
+"cisco9500-01":"swp3" -- "cisco9500-02":"swp3"
 "spine01":"swp1" -- "leaf01":"swp53"
 "spine01":"swp2" -- "leaf02":"swp51"
 "spine01":"swp3" -- "leaf03":"swp51"
