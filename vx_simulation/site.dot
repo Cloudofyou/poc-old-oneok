@@ -14,9 +14,9 @@ graph site {
 "internet":"swp1" -- "cisco9500-01":"swp4"
 "internet":"swp2" -- "cisco9500-02":"swp4"
 "cisco9500-01":"swp1" -- "bl1":"swp51"
-"cisco9500-01":"swp2" -- "bl2":"swp51"
+"cisco9500-01":"swp2" -- "bl2":"swp47"
 "cisco9500-02":"swp1" -- "bl1":"swp52"
-"cisco9500-02":"swp2" -- "bl2":"swp52"
+"cisco9500-02":"swp2" -- "bl2":"swp48"
 "cisco9500-01":"swp3" -- "cisco9500-02":"swp3"
 
 "s1":"swp1" -- "bl1":"swp53"
