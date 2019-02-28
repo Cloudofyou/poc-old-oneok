@@ -116,6 +116,9 @@
 
          - add loopback lo ip address 172.31.255.5/32
          - add bgp autonomous-system 65201
+         - add routing prefix-list ipv4 list1 seq 10 permit 172.31.255.0/24 ge 32
+         - add routing prefix-list ipv4 list1 seq 20 permit 192.168.0.0/16 ge 24
+         - add routing prefix-list ipv4 list1 seq 30 deny any
          - add interface swp51 ip address 172.16.0.0/31
          - add interface swp52 ip address 172.16.0.2/31
          - add bgp network 172.31.255.5/32
@@ -128,6 +131,7 @@
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
          - add bgp neighbor swp53-54 interface peer-group SPINES
+         - add bgp ipv4 unicast neighbor SPINES prefix-list list1 out
          - add bgp bestpath as-path multipath-relax
 
        commit: true
@@ -140,6 +144,9 @@
 
          - add loopback lo ip address 172.31.255.6/32
          - add bgp autonomous-system 65202
+         - add routing prefix-list ipv4 list1 seq 10 permit 172.31.255.0/24 ge 32
+         - add routing prefix-list ipv4 list1 seq 20 permit 192.168.0.0/16 ge 24
+         - add routing prefix-list ipv4 list1 seq 30 deny any
          - add interface swp47 ip address 172.16.0.4/31
          - add interface swp48 ip address 172.16.0.6/31
          - add bgp network 172.31.255.6/32
@@ -153,6 +160,7 @@
          - add bgp neighbor SPINES description Internal Fabric Network
          - add bgp neighbor swp50 interface peer-group SPINES
          - add bgp neighbor swp52 interface peer-group SPINES
+         - add bgp ipv4 unicast neighbor SPINES prefix-list list1 out
          - add bgp bestpath as-path multipath-relax
 
        commit: true
