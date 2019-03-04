@@ -32,6 +32,7 @@ s1 ansible_host=192.168.200.4
 
 
 [host]
+netq-ts ansible_host=192.168.200.250
 server01 ansible_host=192.168.200.10
 server02 ansible_host=192.168.200.11
 
