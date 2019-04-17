@@ -169,6 +169,13 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
+         - add clag peer sys-mac 44:38:39:FF:00:01 interface swp55-56 primary backup-ip 10.19.241.15
+         - add vlan 100 ip address 10.0.1.250/24
+         - add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.254/24
+         - add bgp ipv4 unicast network 10.0.1.0/24
+         - add clag port bond bond-to-host-11 interface swp1 clag-id 1
+         - add bond bond-to-host-11 bridge access 100
+         - add bond bond-to-host-11 stp bpduguard
 
        commit: true
 
@@ -188,5 +195,12 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
+         - add clag peer sys-mac 44:38:39:FF:00:01 interface swp55-56 secondary backup-ip 10.19.241.14
+         - add vlan 100 ip address 10.0.1.251/24
+         - add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.254/24
+         - add bgp ipv4 unicast network 10.0.1.0/24
+         - add clag port bond bond-to-host-11 interface swp1 clag-id 1
+         - add bond bond-to-host-11 bridge access 100
+         - add bond bond-to-host-11 stp bpduguard
 
        commit: true
