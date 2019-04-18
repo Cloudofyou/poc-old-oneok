@@ -178,12 +178,12 @@
          - add bgp neighbor SPINES remote-as external
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
-         - add bgp neighbor swp50 interface peer-group SPINES
-         - add bgp neighbor swp52 interface peer-group SPINES
+         - add bgp neighbor swp53 interface peer-group SPINES
+         - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1,swp47,swp48
+         - add interface swp1,swp55,swp56
          - add vlan 100
-         - add bond peerlink bond slaves swp47,swp48
+         - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
          - add interface peerlink.4094 clag backup-ip 192.168.200.9 vrf mgmt
          - add interface peerlink.4094 clag sys-mac 44:38:39:FF:01:56
@@ -191,8 +191,8 @@
          - add bridge bridge ports peerlink
          - add bridge stp treeprio 8192
          - add interface swp1 post-up ip link set swp1 promisc on
-         - add interface swp47 post-up ip link set swp48 promisc on
-         - add interface swp48 post-up ip link set swp48 promisc on
+         - add interface swp55 post-up ip link set swp55 promisc on
+         - add interface swp56 post-up ip link set swp56 promisc on
          - add bond bond01 bond slaves swp1
          - add bond bond01 clag id 1
          - add bond bond01 bridge access 100
@@ -212,20 +212,20 @@
          - add bgp neighbor SPINES remote-as external
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
-         - add bgp neighbor swp50 interface peer-group SPINES
-         - add bgp neighbor swp52 interface peer-group SPINES
+         - add bgp neighbor swp53 interface peer-group SPINES
+         - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1,swp47,swp48
+         - add interface swp1,swp55,swp56
          - add vlan 100
-         - add bond peerlink bond slaves swp47,swp48
+         - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
          - add interface peerlink.4094 clag backup-ip 192.168.200.8 vrf mgmt
          - add interface peerlink.4094 clag sys-mac 44:38:39:FF:01:56
          - add bridge bridge ports peerlink
          - add bridge stp treeprio 8192
          - add interface swp1 post-up ip link set swp1 promisc on
-         - add interface swp47 post-up ip link set swp47 promisc on
-         - add interface swp47 post-up ip link set swp48 promisc on
+         - add interface swp55 post-up ip link set swp55 promisc on
+         - add interface swp56 post-up ip link set swp56 promisc on
          - add bond bond01 bond slaves swp1
          - add bond bond01 clag id 1
          - add bond bond01 bridge access 100
