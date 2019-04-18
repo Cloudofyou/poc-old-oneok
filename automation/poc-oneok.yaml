@@ -30,13 +30,16 @@
          - add loopback lo ip address 10.19.241.1/32
          - add bgp autonomous-system 65001
          - add interface swp1 ip address 172.16.0.1/31
-         - add interface swp3 ip address 172.16.0.4/31
+         - add interface swp2 ip address 172.16.0.5/31
+         - add interface swp3 ip address 172.16.0.8/31
          - add interface swp4 ip address 172.17.0.1/30
          - add bgp neighbor 172.16.0.0 remote-as 65201
-         - add bgp neighbor 172.16.0.5 remote-as 65001
+         - add bgp neighbor 172.16.0.4 remote-as 65202
+         - add bgp neighbor 172.16.0.9 remote-as 65001
          - add bgp network 10.19.241.1/32
          - add bgp network 172.16.0.0/31
          - add bgp network 172.16.0.4/31
+         - add bgp network 172.16.0.8/31
          - add ospf router-id 10.19.241.1
          - add ospf network 172.17.0.0/30 area 0.0.0.0
          - add bgp redistribute ospf metric 100
@@ -52,13 +55,16 @@
          - add loopback lo ip address 10.19.241.2/32
          - add bgp autonomous-system 65001
          - add interface swp1 ip address 172.16.0.3/31
-         - add interface swp3 ip address 172.16.0.5/31
+         - add interface swp2 ip address 172.16.0.7/31
+         - add interface swp3 ip address 172.16.0.9/31
          - add interface swp4 ip address 172.17.0.5/30
          - add bgp neighbor 172.16.0.2 remote-as 65201
          - add bgp neighbor 172.16.0.6 remote-as 65202
+         - add bgp neighbor 172.16.0.8 remote-as 65001
          - add bgp network 10.19.241.2/32
          - add bgp network 172.16.0.2/31
-         - add bgp network 172.16.0.4/31
+         - add bgp network 172.16.0.6/31
+         - add bgp network 172.16.0.8/31
          - add ospf router-id 10.19.241.2
          - add ospf network 172.17.0.4/30 area 0.0.0.0
          - add bgp redistribute ospf metric 200
@@ -113,15 +119,18 @@
          - add routing prefix-list ipv4 list1 seq 10 permit 10.19.241.0/24 ge 32
          - add routing prefix-list ipv4 list1 seq 20 permit 192.168.0.0/16 ge 24
          - add routing prefix-list ipv4 list1 seq 30 deny any
-         - add interface swp25 ip address 172.16.0.0/31
+         - add interface swp51 ip address 172.16.0.0/31
+         - add interface swp52 ip address 172.16.0.2/31
          - add bgp network 10.19.241.12/32
          - add bgp network 172.16.0.0/31
+         - add bgp network 172.16.0.2/31
          - add bgp neighbor 172.16.0.1 remote-as 65001
+         - add bgp neighbor 172.16.0.3 remote-as 65001
          - add bgp neighbor SPINES peer-group
          - add bgp neighbor SPINES remote-as external
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
-         - add bgp neighbor swp29-30 interface peer-group SPINES
+         - add bgp neighbor swp53-54 interface peer-group SPINES
          - add bgp ipv4 unicast neighbor SPINES prefix-list list1 out
          - add bgp bestpath as-path multipath-relax
 
@@ -138,16 +147,19 @@
          - add routing prefix-list ipv4 list1 seq 10 permit 10.19.241.0/24 ge 32
          - add routing prefix-list ipv4 list1 seq 20 permit 192.168.0.0/16 ge 24
          - add routing prefix-list ipv4 list1 seq 30 deny any
-         - add interface swp55 ip address 172.16.0.2/31
+         - add interface swp47 ip address 172.16.0.4/31
+         - add interface swp48 ip address 172.16.0.6/31
          - add bgp network 10.19.241.13/32
-         - add bgp network 172.16.0.2/31
-         - add bgp neighbor 172.16.0.3 remote-as 65001
+         - add bgp network 172.16.0.4/31
+         - add bgp network 172.16.0.6/31
+         - add bgp neighbor 172.16.0.5 remote-as 65001
+         - add bgp neighbor 172.16.0.7 remote-as 65001
          - add bgp neighbor SPINES peer-group
          - add bgp neighbor SPINES remote-as external
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
-         - add bgp neighbor swp53 interface peer-group SPINES
-         - add bgp neighbor swp54 interface peer-group SPINES
+         - add bgp neighbor swp50 interface peer-group SPINES
+         - add bgp neighbor swp52 interface peer-group SPINES
          - add bgp ipv4 unicast neighbor SPINES prefix-list list1 out
          - add bgp bestpath as-path multipath-relax
 
@@ -166,16 +178,24 @@
          - add bgp neighbor SPINES remote-as external
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
-         - add bgp neighbor swp53 interface peer-group SPINES
-         - add bgp neighbor swp54 interface peer-group SPINES
+         - add bgp neighbor swp50 interface peer-group SPINES
+         - add bgp neighbor swp52 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add clag peer sys-mac 44:38:39:FF:00:01 interface swp55-56 primary backup-ip 10.19.241.15
-         - add vlan 100 ip address 10.0.1.250/24
-         - add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.254/24
-         - add bgp ipv4 unicast network 10.0.1.0/24
-         - add clag port bond bond-to-host-11 interface swp1 clag-id 1
-         - add bond bond-to-host-11 bridge access 100
-         - add bond bond-to-host-11 stp bpduguard
+         - add interface swp1,swp47,swp48
+         - add vlan 100
+         - add bond peerlink bond slaves swp47,swp48
+         - add interface peerlink.4094 clag peer-ip linklocal
+         - add interface peerlink.4094 clag backup-ip 192.168.200.9 vrf mgmt
+         - add interface peerlink.4094 clag sys-mac 44:38:39:FF:01:56
+         - add interface peerlink.4094 clag priority 100
+         - add bridge bridge ports peerlink
+         - add bridge stp treeprio 8192
+         - add interface swp1 post-up ip link set swp1 promisc on
+         - add interface swp47 post-up ip link set swp48 promisc on
+         - add interface swp48 post-up ip link set swp48 promisc on
+         - add bond bond01 bond slaves swp1
+         - add bond bond01 clag id 1
+         - add bond bond01 bridge access 100
 
        commit: true
 
@@ -192,15 +212,38 @@
          - add bgp neighbor SPINES remote-as external
          - add bgp neighbor SPINES capability extended-nexthop
          - add bgp neighbor SPINES description Internal Fabric Network
-         - add bgp neighbor swp53 interface peer-group SPINES
-         - add bgp neighbor swp54 interface peer-group SPINES
+         - add bgp neighbor swp50 interface peer-group SPINES
+         - add bgp neighbor swp52 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add clag peer sys-mac 44:38:39:FF:00:01 interface swp55-56 secondary backup-ip 10.19.241.14
-         - add vlan 100 ip address 10.0.1.251/24
-         - add vlan 100 ip address-virtual 00:00:5E:00:01:01 10.0.1.254/24
-         - add bgp ipv4 unicast network 10.0.1.0/24
-         - add clag port bond bond-to-host-11 interface swp1 clag-id 1
-         - add bond bond-to-host-11 bridge access 100
-         - add bond bond-to-host-11 stp bpduguard
+         - add interface swp1,swp47,swp48
+         - add vlan 100
+         - add bond peerlink bond slaves swp47,swp48
+         - add interface peerlink.4094 clag peer-ip linklocal
+         - add interface peerlink.4094 clag backup-ip 192.168.200.8 vrf mgmt
+         - add interface peerlink.4094 clag sys-mac 44:38:39:FF:01:56
+         - add bridge bridge ports peerlink
+         - add bridge stp treeprio 8192
+         - add interface swp1 post-up ip link set swp1 promisc on
+         - add interface swp47 post-up ip link set swp47 promisc on
+         - add interface swp47 post-up ip link set swp48 promisc on
+         - add bond bond01 bond slaves swp1
+         - add bond bond01 clag id 1
+         - add bond bond01 bridge access 100
 
        commit: true
+
+- name: Configure Server LACP Interfaces
+  hosts: server01
+  become: yes
+  gather_facts: yes
+  tasks:
+
+  - name: Copy Server LACP Interface Config
+    copy:
+      src: configurations/{{ansible_hostname}}/interfaces
+      dest: /etc/network/interfaces
+    register: reboot
+
+  - name: reboot
+    reboot:
+      pre_reboot_delay: 60
