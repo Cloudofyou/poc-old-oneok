@@ -10,9 +10,6 @@ graph site {
  "l4" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.5" memory="1024" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.200.9"]
  "server01" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.10"]
  "server02" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.11"]
- "netq-ts" [function="host" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.250" memory="2048" os="cumulus/ts"]
-
-
 
 "internet":"swp1" -- "cisco9500-01":"swp4"
 "internet":"swp2" -- "cisco9500-02":"swp4"
