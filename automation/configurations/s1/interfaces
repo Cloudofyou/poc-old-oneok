@@ -25,9 +25,9 @@ iface uplink inet static
     bond-updelay 0
     bond-downdelay 0
     bond-slaves eth1 eth2
-    address 10.0.1.11
+    address 10.1.212.100
     netmask 255.255.255.0
-    post-up ip route add 172.16.0.0/16 via 10.0.1.254
+    post-up ip route add 172.16.0.0/16 via 10.1.212.1
 
 
 source /etc/network/interfaces.d/*.cfg

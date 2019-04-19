@@ -221,7 +221,7 @@
        commit: true
 
 - name: Configure Server LACP Interfaces
-  hosts: server01
+  hosts: servers
   become: yes
   gather_facts: yes
   tasks:
