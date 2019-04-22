@@ -169,8 +169,8 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1,swp55,swp56
-         - add vlan 100
+         - add interface swp1,swp2,swp55,swp56
+         - add vlan 160,161
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
          - add interface peerlink.4094 clag backup-ip 192.168.200.9 vrf mgmt
@@ -178,12 +178,19 @@
          - add interface peerlink.4094 clag priority 100
          - add bridge bridge ports peerlink
          - add bridge stp treeprio 8192
+         - add vlan 160 ip address 10.1.212.2/24
+         - add vlan 100 ip address-virtual 00:00:5e:00:a0:01 10.1.212.1/24
+         - add bgp ipv4 unicast network 10.1.212.0/24
+         - add vlan 161 ip address 10.19.1.2/24
+         - add vlan 161 ip address-virtual 00:00:5e:00:a1:01 10.19.1.1/24
+         - add bgp ipv4 unicast network 10.19.1.0/24
          - add interface swp1 post-up ip link set swp1 promisc on
+         - add interface swp2 post-up ip link set swp2 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
          - add interface swp56 post-up ip link set swp56 promisc on
-         - add bond bond01 bond slaves swp1
+         - add bond bond01 bond slaves swp1,swp2
          - add bond bond01 clag id 1
-         - add bond bond01 bridge access 100
+         - add bond bond01 bridge trunk vlans 160-161
 
        commit: true
 
@@ -203,20 +210,27 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1,swp55,swp56
-         - add vlan 100
+         - add interface swp1,swp2,swp55,swp56
+         - add vlan 160,161
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
          - add interface peerlink.4094 clag backup-ip 192.168.200.8 vrf mgmt
          - add interface peerlink.4094 clag sys-mac 44:38:39:FF:01:56
          - add bridge bridge ports peerlink
          - add bridge stp treeprio 8192
+         - add vlan 160 ip address 10.1.212.2/24
+         - add vlan 100 ip address-virtual 00:00:5e:00:a0:01 10.1.212.1/24
+         - add bgp ipv4 unicast network 10.1.212.0/24
+         - add vlan 161 ip address 10.19.1.2/24
+         - add vlan 161 ip address-virtual 00:00:5e:00:a1:01 10.19.1.1/24
+         - add bgp ipv4 unicast network 10.19.1.0/24
          - add interface swp1 post-up ip link set swp1 promisc on
+         - add interface swp2 post-up ip link set swp2 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
          - add interface swp56 post-up ip link set swp56 promisc on
-         - add bond bond01 bond slaves swp1
+         - add bond bond01 bond slaves swp1,swp2
          - add bond bond01 clag id 1
-         - add bond bond01 bridge access 100
+         - add bond bond01 bridge trunk vlans 160-161
 
        commit: true
 
