@@ -41,11 +41,16 @@ if [ "$?" == "0" ]; then
     echo -e "DEVICE=vagrant\nBOOTPROTO=dhcp\nONBOOT=yes" > /etc/sysconfig/network-scripts/ifcfg-vagrant
     echo -e "DEVICE=eth0\nBOOTPROTO=dhcp\nONBOOT=yes" > /etc/sysconfig/network-scripts/ifcfg-eth0
 fi
+## Glenns temp
+sudo apt-get install vlan -qy
+sudo modprobe 8021q
+sudo su -c 'echo "8021q" >> /etc/modules'
+## End of temp
 
 ## Atilla's Rec - fixing the SSH Key issues:
-sudo su
-useradd cumulus -m -s /bin/bash
-echo "cumulus:CumulusLinux!" | chpasswd
+# sudo su
+# useradd cumulus -m -s /bin/bash
+# echo "cumulus:CumulusLinux!" | chpasswd
 usermod -aG sudo cumulus
 echo "cumulus ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers.d/20_cumulus
 
