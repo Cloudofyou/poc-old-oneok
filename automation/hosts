@@ -20,6 +20,13 @@ l4 ansible_host=192.168.200.9
 server01 ansible_host=192.168.200.10
 server02 ansible_host=192.168.200.11
 
+[storage]
+storage01 ansible_host=192.168.200.12
+storage02 ansible_host=192.168.200.13
+
+[netq]
+netq-ts ansible_host=192.168.200.250
+
 [all:vars]
 ansible_user=cumulus
 ansible_become_pass=CumulusLinux!
