@@ -83,7 +83,7 @@ SCRIPT
 
 Vagrant.configure("2") do |config|
 
-  simid = 1556203517
+  simid = 1005562517
 
   config.vm.provider "virtualbox" do |v|
     v.gui=false
@@ -235,13 +235,13 @@ end
       vbox.customize ['modifyvm', :id, '--nicpromisc7', 'allow-all']
       vbox.customize ['modifyvm', :id, '--nicpromisc8', 'allow-all']
       vbox.customize ['modifyvm', :id, '--nicpromisc9', 'allow-all']
-      vbox.customize ['modifyvm', :id, '--nicpromisc10', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc11', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc12', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc13', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc14', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc15', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc16', 'allow-all'"]
+      vbox.customize ['modifyvm', :id, '--nicpromisc10', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc11', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc12', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc13', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc14', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc15', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc16', 'allow-all']
       vbox.customize ["modifyvm", :id, "--nictype1", "virtio"]
     end
 
@@ -779,9 +779,9 @@ end
       vbox.customize ['modifyvm', :id, '--nicpromisc7', 'allow-all']
       vbox.customize ['modifyvm', :id, '--nicpromisc8', 'allow-all']
       vbox.customize ['modifyvm', :id, '--nicpromisc9', 'allow-all']
-      vbox.customize ['modifyvm', :id, '--nicpromisc10', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc11', 'allow-all'"]
-      vbox.customize ['modifyvm', :id, '--nicpromisc12', 'allow-all'"]
+      vbox.customize ['modifyvm', :id, '--nicpromisc10', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc11', 'allow-all']
+      vbox.customize ['modifyvm', :id, '--nicpromisc12', 'allow-all']
       vbox.customize ["modifyvm", :id, "--nictype1", "virtio"]
     end
 
