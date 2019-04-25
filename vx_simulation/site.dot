@@ -10,8 +10,9 @@ graph site {
  "l4" [function="leaf" os="CumulusCommunity/cumulus-vx" version="3.7.5" memory="1024" config="./helper_scripts/extra_switch_config.sh" mgmt_ip="192.168.200.9"]
  "server01" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.10"]
  "server02" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.11"]
+ "storage01" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.12"]
+ "storage02" [function="host" os="yk0/ubuntu-xenial" memory="768" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.13"]
  "netq-ts" [function="host" config="./helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.250" memory="2048" os="cumulus/ts"]
-
 
 
 "internet":"swp1" -- "cisco9500-01":"swp4"
@@ -34,4 +35,12 @@ graph site {
 "l4":"swp2" -- "server02":"eth2"
 "l3":"swp55" -- "l4":"swp55"
 "l3":"swp56" -- "l4":"swp56"
+"l3":"swp3" -- "storage01":"eth1"
+"l3":"swp4" -- "storage01":"eth2"
+"l3":"swp5" -- "storage02":"eth1"
+"l3":"swp6" -- "storage02":"eth2"
+"l4":"swp3" -- "storage01":"eth3"
+"l4":"swp4" -- "storage01":"eth4"
+"l4":"swp5" -- "storage02":"eth3"
+"l4":"swp6" -- "storage02":"eth4"
 }

@@ -2,7 +2,7 @@
 # Created by Topology-Converter v4.6.9
 #    Template Revision: v4.6.9
 #    https://github.com/cumulusnetworks/topology_converter
-#    using topology data from: training-2switch.dot
+#    using topology data from: site.dot
 
 echo "################################################"
 echo "  Running Automatic Management Server Setup..."
@@ -15,13 +15,13 @@ echo " Detected vagrant user is: $username"
 #       KNOBS
 #######################
 
-REPOSITORY="https://github.com/CumulusNetworks/training-2switch"
-REPONAME="training-2switch"
+REPOSITORY="https://github.com/CumulusNetworks/poc-oneok"
+REPONAME="poc-oneok"
 
 #Install Automation Tools
 puppet=0
 ansible=1
-ansible_version=2.7.10
+ansible_version=2.5.4
 
 #######################
 
@@ -209,10 +209,6 @@ cat <<EOT >> /home/cumulus/.gitconfig
 [core]
     editor = vim
 EOT
-
-echo " ### Adding .bash_profile to auto login as cumulus user"
-echo "sudo su - cumulus" >> /home/vagrant/.bash_profile
-echo "exit" >> /home/vagrant/.bash_profile
 
 echo "############################################"
 echo "      DONE!"

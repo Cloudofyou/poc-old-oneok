@@ -1,13 +1,13 @@
 # Created by Topology-Converter v4.6.9
 #    Template Revision: v4.6.9
 #    https://github.com/cumulusnetworks/topology_converter
-#    using topology data from: ./site.dot
+#    using topology data from: site.dot
 
 
 
 
 [oob-switch]
-oob-mgmt-switch ansible_host=192.168.200.12
+oob-mgmt-switch ansible_host=192.168.200.14
 
 
 
@@ -33,6 +33,8 @@ s1 ansible_host=192.168.200.4
 
 [host]
 netq-ts ansible_host=192.168.200.250
+storage02 ansible_host=192.168.200.13
+storage01 ansible_host=192.168.200.12
 server01 ansible_host=192.168.200.10
 server02 ansible_host=192.168.200.11
 
