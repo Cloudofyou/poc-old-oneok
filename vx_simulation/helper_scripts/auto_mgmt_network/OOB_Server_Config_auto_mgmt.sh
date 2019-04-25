@@ -21,7 +21,7 @@ REPONAME="poc-oneok"
 #Install Automation Tools
 puppet=0
 ansible=1
-ansible_version=2.5.4
+ansible_version=2.7.10
 
 #######################
 
