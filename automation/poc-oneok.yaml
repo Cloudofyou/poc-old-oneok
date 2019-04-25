@@ -169,8 +169,8 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1,swp2,swp55,swp56
-         - add vlan 160,161,70
+         - add interface swp1-swp6,swp55,swp56
+         - add vlan 160,161,70,60
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
          - add interface peerlink.4094 clag backup-ip 192.168.200.9 vrf mgmt
@@ -187,13 +187,29 @@
          - add vlan 70 ip address 10.18.0.2/24
          - add vlan 70 ip address-virtual 00:00:5e:00:46:01 10.18.0.1/24
          - add bgp ipv4 unicast network 10.18.0.0/24
+         - add vlan 60 ip address 10.18.10.2/24
+         - add vlan 60 ip address-virtual 00:00:5e:00:3c:01 10.18.10.1/24
+         - add bgp ipv4 unicast network 10.18.10.0/24
          - add interface swp1 post-up ip link set swp1 promisc on
          - add interface swp2 post-up ip link set swp2 promisc on
+         - add interface swp3 post-up ip link set swp3 promisc on
+         - add interface swp4 post-up ip link set swp4 promisc on
+         - add interface swp5 post-up ip link set swp5 promisc on
+         - add interface swp6 post-up ip link set swp6 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
          - add interface swp56 post-up ip link set swp56 promisc on
-         - add bond bond01 bond slaves swp1,swp2
+         - add bond bond01 bond slaves swp1
          - add bond bond01 clag id 1
-         - add bond bond01 bridge trunk vlans 70,160-161
+         - add bond bond01 bridge trunk vlans 60,70,160-161
+         - add bond bond02 bond slaves swp2
+         - add bond bond02 clag id 2
+         - add bond bond02 bridge trunk vlans 60,70,160-161
+         - add bond bond03 bond slaves swp3-4
+         - add bond bond03 clag id 3
+         - add bond bond03 bridge trunk vlans 60
+         - add bond bond04 bond slaves swp5-6
+         - add bond bond04 clag id 4
+         - add bond bond04 bridge trunk vlans 60
 
        commit: true
 
@@ -213,8 +229,8 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1,swp2,swp55,swp56
-         - add vlan 70,160,161
+         - add interface swp1-swp6,swp55,swp56
+         - add vlan 60,70,160,161
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
          - add interface peerlink.4094 clag backup-ip 192.168.200.8 vrf mgmt
@@ -230,13 +246,29 @@
          - add vlan 70 ip address 10.18.0.3/24
          - add vlan 70 ip address-virtual 00:00:5e:00:46:01 10.18.0.1/24
          - add bgp ipv4 unicast network 10.18.0.0/24
+         - add vlan 60 ip address 10.18.10.3/24
+         - add vlan 60 ip address-virtual 00:00:5e:00:3c:01 10.18.10.1/24
+         - add bgp ipv4 unicast network 10.18.10.0/24
          - add interface swp1 post-up ip link set swp1 promisc on
          - add interface swp2 post-up ip link set swp2 promisc on
+         - add interface swp3 post-up ip link set swp3 promisc on
+         - add interface swp4 post-up ip link set swp4 promisc on
+         - add interface swp5 post-up ip link set swp5 promisc on
+         - add interface swp6 post-up ip link set swp6 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
          - add interface swp56 post-up ip link set swp56 promisc on
-         - add bond bond01 bond slaves swp1,swp2
+         - add bond bond01 bond slaves swp1
          - add bond bond01 clag id 1
-         - add bond bond01 bridge trunk vlans 70,160-161
+         - add bond bond01 bridge trunk vlans 60,70,160-161
+         - add bond bond02 bond slaves swp2
+         - add bond bond02 clag id 2
+         - add bond bond02 bridge trunk vlans 60,70,160-161
+         - add bond bond03 bond slaves swp3-4
+         - add bond bond03 clag id 3
+         - add bond bond03 bridge trunk vlans 60
+         - add bond bond04 bond slaves swp5-6
+         - add bond bond04 clag id 4
+         - add bond bond04 bridge trunk vlans 60
 
        commit: true
 
