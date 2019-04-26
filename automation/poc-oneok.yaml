@@ -6,16 +6,16 @@
        commands:
 
          - add loopback lo ip address 192.168.100.1/32
-         - add vlan 10 ip address 192.168.200.1/24
-         - add vlan 20 ip address 192.168.201.1/24
-         - add vlan 30 ip address 192.168.202.1/24
-         - add vlan 40 ip address 192.168.203.1/24
+         - add vlan 10 ip address 192.168.100.1/24
+         - add vlan 20 ip address 192.168.101.1/24
+         - add vlan 30 ip address 192.168.102.1/24
+         - add vlan 40 ip address 192.168.103.1/24
          - add interface swp1 ip address 172.17.0.2/30
          - add interface swp2 ip address 172.17.0.6/30
          - add ospf router-id 192.168.100.1
          - add ospf network 172.17.0.0/30 area 0.0.0.0
          - add ospf network 172.17.0.4/30 area 0.0.0.0
-         - add ospf network 192.168.200.0/21 area 0.0.0.0
+         - add ospf network 192.168.100.0/21 area 0.0.0.0
          - add routing route 10.19.241.0/24 172.17.0.1 100
          - add routing route 10.19.241.0/24 172.17.0.5 100
 
