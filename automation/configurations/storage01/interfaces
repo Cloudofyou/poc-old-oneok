@@ -7,11 +7,11 @@ iface eth1 inet manual
   # Required for Vagrant
   post-up ip link set promisc on dev eth1
 
-auto eth2
-iface eth2 inet manual
+auto eth3
+iface eth3 inet manual
   bond-master bond0
   # Required for Vagrant
-  post-up ip link set promisc on dev eth2
+  post-up ip link set promisc on dev eth3
 
 auto bond0
 iface bond0 inet manual
@@ -24,7 +24,7 @@ iface bond0 inet manual
     bond-use-carrier yes
     bond-updelay 0
     bond-downdelay 0
-    bond-slaves eth1 eth2
+    bond-slaves eth1 eth3
 
 auto bond0.60
 iface bond0.160 inet static
