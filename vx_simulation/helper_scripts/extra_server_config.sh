@@ -17,15 +17,6 @@ mkdir -p /home/cumulus/.ssh
 #wget -O /home/cumulus/.ssh/authorized_keys $SSH_URL
 chown -R cumulus:cumulus /home/cumulus/.ssh
 
-## End Atilla's Rec
-
-### Begin Original Config
-## sudo su
-
-## useradd cumulus -m -s /bin/bash
-## echo "cumulus:CumulusLinux!" | chpasswd
-### End Original Config
-
 #Test for Debian-Based Host
 which apt &> /dev/null
 if [ "$?" == "0" ]; then
@@ -48,6 +39,7 @@ if [ "$?" == "0" ]; then
     echo -e "iface eth0 inet dhcp\n\n" >> /etc/network/interfaces.d/eth0.cfg
 
     echo "retry 1;" >> /etc/dhcp/dhclient.conf
+    echo "timeout 600;" >> /etc/dhcp/dhclient.conf
 fi
 
 #Test for Fedora-Based Host
@@ -59,6 +51,11 @@ if [ "$?" == "0" ]; then
     echo -e "DEVICE=eth0\nBOOTPROTO=dhcp\nONBOOT=yes" > /etc/sysconfig/network-scripts/ifcfg-eth0
 fi
 
+## Glenns temp
+# sudo apt-get install vlan -qy
+# sudo modprobe 8021q
+# sudo su -c 'echo "8021q" >> /etc/modules'
+## End of temp
 
 echo "#################################"
 echo "   Finished"
