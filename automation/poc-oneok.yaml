@@ -172,7 +172,7 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1-6,swp55-56
+         - add interface swp1-6,swp11-12,swp55-56
          - add vlan 160,161,70,60
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
@@ -199,14 +199,12 @@
          - add interface swp4 post-up ip link set swp4 promisc on
          - add interface swp5 post-up ip link set swp5 promisc on
          - add interface swp6 post-up ip link set swp6 promisc on
+         - add interface swp11 post-up ip link set swp11 promisc on
+         - add interface swp12 post-up ip link set swp12 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
          - add interface swp56 post-up ip link set swp56 promisc on
-         - add bond bond01 bond slaves swp1
-         - add bond bond01 clag id 1
-         - add bond bond01 bridge trunk vlans 70,160-161
-         - add bond bond02 bond slaves swp2
-         - add bond bond02 clag id 2
-         - add bond bond02 bridge trunk vlans 70,160-161
+         - add bridge bridge ports swp11
+         - add bridge bridge ports swp12
          - add bond bond03 bond slaves swp3
          - add bond bond03 clag id 3
          - add bond bond03 bridge trunk vlans 60
@@ -232,7 +230,7 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1-6,swp55-56
+         - add interface swp1-6,swp11-12,swp55-56
          - add vlan 60,70,160,161
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
@@ -256,16 +254,12 @@
          - add interface swp2 post-up ip link set swp2 promisc on
          - add interface swp3 post-up ip link set swp3 promisc on
          - add interface swp4 post-up ip link set swp4 promisc on
-         - add interface swp5 post-up ip link set swp5 promisc on
-         - add interface swp6 post-up ip link set swp6 promisc on
+         - add interface swp11 post-up ip link set swp11 promisc on
+         - add interface swp12 post-up ip link set swp12 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
          - add interface swp56 post-up ip link set swp56 promisc on
-         - add bond bond01 bond slaves swp1
-         - add bond bond01 clag id 1
-         - add bond bond01 bridge trunk vlans 70,160-161
-         - add bond bond02 bond slaves swp2
-         - add bond bond02 clag id 2
-         - add bond bond02 bridge trunk vlans 70,160-161
+         - add bridge bridge ports swp11
+         - add bridge bridge ports swp12
          - add bond bond03 bond slaves swp3
          - add bond bond03 clag id 3
          - add bond bond03 bridge trunk vlans 60
