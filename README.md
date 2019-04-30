@@ -12,7 +12,7 @@ This is an Ansible demo which configures the described topology for the OneOk PO
 
 First, make sure that the following is currently running on your machine:
 
-1. Vagrant > version 2.1.2
+1. Vagrant > version 2.1.5
 
     https://www.vagrantup.com/
 
@@ -26,12 +26,12 @@ First, make sure that the following is currently running on your machine:
 
 4. Change directories to the following
 
-    ```poc-oneok```
+    ```cd poc-oneok```
 
 6. Run the following:
 
     ```./bringitup.sh```
-
+    
 ### Running the Ansible Playbook
 
 1. SSH into the oob-mgmt-server:
@@ -47,12 +47,38 @@ First, make sure that the following is currently running on your machine:
 
     ```poc-oneok/automation```
 
-4. Run the following:
+### Temporary work arounds until automation is fixed
+
+1. SSH into all 4 of the servers with:
+
+   ```ssh server01 | server02 | stoage01 | storage02```
+   
+2. Enter the password on each server:
+
+   ```CumulusLinux!```
+   
+3. Download and install traceroute:
+
+   ```sudo apt-get install traceroute```
+   ```exit```
+
+4. Run the following the poc-oneok/automation directory:
 
     ```./provision.sh```
 
 This will run the automation script and configure the environment.
 
+5. Fix the servers routing table on all 4 servers:
+
+    ```sudo ip route delete default```
+    
+    --On storage01 and storage02 use:
+    
+    ```sudo ip route add default via 10.18.10.1```
+    
+    --On server01 and server02 use:
+    
+    ```sudo ip route add default via 10.1.212.1```
 
 ### Errata
 
