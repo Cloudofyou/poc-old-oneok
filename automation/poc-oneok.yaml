@@ -278,3 +278,9 @@
   - name: reboot
     reboot:
       pre_reboot_delay: 60
+
+  - name: Install traceroute
+    apt:
+      name: traceroute
+      update_cache: yes
+      
