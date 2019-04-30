@@ -51,7 +51,13 @@ First, make sure that the following is currently running on your machine:
 
 1. SSH into all 4 of the servers with:
 
-   ```ssh server01 | server02 | stoage01 | storage02```
+   ```ssh server01```
+   
+   ```ssh server02```
+   
+   ```ssh storage01```
+   
+   ```ssh storage02```
    
 2. Enter the password on each server:
 
@@ -60,6 +66,7 @@ First, make sure that the following is currently running on your machine:
 3. Download and install traceroute:
 
    ```sudo apt-get install traceroute```
+   
    ```exit```
 
 4. Run the following the poc-oneok/automation directory:
