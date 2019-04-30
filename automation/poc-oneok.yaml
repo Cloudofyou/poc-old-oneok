@@ -172,7 +172,7 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1-6,swp11-12,swp55-56
+         - add interface swp3,swp5,swp11-12,swp55-56
          - add vlan 160,161,70,60
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
@@ -193,12 +193,8 @@
          - add vlan 60 ip address 10.18.10.2/24
          - add vlan 60 ip address-virtual 00:00:5e:00:3c:01 10.18.10.1/24
          - add bgp ipv4 unicast network 10.18.10.0/24
-         - add interface swp1 post-up ip link set swp1 promisc on
-         - add interface swp2 post-up ip link set swp2 promisc on
          - add interface swp3 post-up ip link set swp3 promisc on
-         - add interface swp4 post-up ip link set swp4 promisc on
          - add interface swp5 post-up ip link set swp5 promisc on
-         - add interface swp6 post-up ip link set swp6 promisc on
          - add interface swp11 post-up ip link set swp11 promisc on
          - add interface swp12 post-up ip link set swp12 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on
@@ -230,7 +226,7 @@
          - add bgp neighbor swp53 interface peer-group SPINES
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp bestpath as-path multipath-relax
-         - add interface swp1-6,swp11-12,swp55-56
+         - add interface swp3,swp5,swp11-12,swp55-56
          - add vlan 60,70,160,161
          - add bond peerlink bond slaves swp55,swp56
          - add interface peerlink.4094 clag peer-ip linklocal
@@ -250,10 +246,8 @@
          - add vlan 60 ip address 10.18.10.3/24
          - add vlan 60 ip address-virtual 00:00:5e:00:3c:01 10.18.10.1/24
          - add bgp ipv4 unicast network 10.18.10.0/24
-         - add interface swp1 post-up ip link set swp1 promisc on
-         - add interface swp2 post-up ip link set swp2 promisc on
          - add interface swp3 post-up ip link set swp3 promisc on
-         - add interface swp4 post-up ip link set swp4 promisc on
+         - add interface swp5 post-up ip link set swp5 promisc on
          - add interface swp11 post-up ip link set swp11 promisc on
          - add interface swp12 post-up ip link set swp12 promisc on
          - add interface swp55 post-up ip link set swp55 promisc on

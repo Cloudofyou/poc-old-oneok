@@ -78,12 +78,8 @@ echo " ### Overwriting /etc/network/interfaces ###"
 cat <<EOT > /etc/network/interfaces
 auto lo
 iface lo inet loopback
-
-
 auto vagrant
 iface vagrant inet dhcp
-
-
 auto eth1
 iface eth1 inet static
     address 192.168.200.254/24
@@ -118,13 +114,10 @@ statistics loopstats peerstats clockstats
 filegen loopstats file loopstats type day enable
 filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
-
 server clock.rdu.cumulusnetworks.com
-
 # By default, exchange time with everybody, but don't allow configuration.
 restrict -4 default kod notrap nomodify nopeer noquery
 restrict -6 default kod notrap nomodify nopeer noquery
-
 # Local users may interrogate the ntp server more closely.
 restrict 127.0.0.1
 restrict ::1
