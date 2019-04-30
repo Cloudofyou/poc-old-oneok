@@ -27,7 +27,7 @@ iface bond0 inet manual
     bond-slaves eth1 eth3
 
 auto bond0.60
-iface bond0.160 inet static
+iface bond0.60 inet static
     address 10.18.10.101
     netmask 255.255.255.0
     gateway 10.18.10.1
