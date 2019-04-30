@@ -275,7 +275,7 @@
   gather_facts: yes
   tasks:
 
-  - name: Copy Server LACP Interface Config
+- name: Copy Server LACP Interface Config
     copy:
       src: configurations/{{ansible_hostname}}/interfaces
       dest: /etc/network/interfaces
@@ -284,3 +284,8 @@
   - name: reboot
     reboot:
       pre_reboot_delay: 60
+
+- name: Install traceroute
+  apt:
+    name: traceroute
+    update_cache: yes
