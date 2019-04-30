@@ -6,7 +6,7 @@ This is an Ansible demo which configures the described topology for the OneOk PO
 
 ### Network Diagram:
 
-![Network Diagram](https://github.com/Cloudofyou/poc-oneok/blob/v6/documentation/OneOk-POC-Diag-06.png)
+![Network Diagram](https://github.com/Cloudofyou/poc-oneok/blob/master/documentation/OneOk-POC-Diag-07.png)
 
 ### Initializing the demo environment:
 
