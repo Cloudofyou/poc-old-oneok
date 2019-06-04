@@ -138,7 +138,7 @@
          - add bgp vrf tenant1 evpn advertise ipv4 unicast
          - add vlan 4001 vrf tenant1
          - add vlan 4001 hwaddress 44:38:39:11:00:15
-         - add bgp network 172.16.0.0/31 vrf tenant1
+         - add bgp vrf tenant1 network 172.16.0.0/31
          - add vxlan vni104001 vxlan id 104001
          - add vxlan vni104001 bridge access 4001
          - add vxlan vni104001 bridge learning off
@@ -178,7 +178,7 @@
          - add bgp vrf tenant1 evpn advertise ipv4 unicast
          - add vlan 4001 vrf tenant1
          - add vlan 4001 hwaddress 44:38:39:11:00:16
-         - add bgp network 172.16.0.2/31 vrf tenant1
+         - add bgp vrf tenant1 network 172.16.0.2/31
          - add vxlan vni104001 vxlan id 104001
          - add vxlan vni104001 bridge access 4001
          - add vxlan vni104001 bridge learning off
