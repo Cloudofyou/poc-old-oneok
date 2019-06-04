@@ -56,8 +56,8 @@
          - add interface swp1 ip address 172.16.0.3/31
          - add interface swp3 ip address 172.16.0.5/31
          - add interface swp4 ip address 172.17.0.5/30
-         - add bgp neighbor 172.16.0.2 remote-as 65201
-         - add bgp neighbor 172.16.0.6 remote-as 65202
+         - add bgp neighbor 172.16.0.2 remote-as 65202
+         - add bgp neighbor 172.16.0.6 remote-as 65001
          - add bgp network 10.19.241.2/32
          - add bgp network 172.16.0.2/31
          - add bgp network 172.16.0.4/31
@@ -84,6 +84,8 @@
          - add bgp neighbor LEAFS description Internal Fabric Network
          - add bgp neighbor swp1-4 interface peer-group LEAFS
          - add bgp bestpath as-path multipath-relax
+         - add bgp evpn neighbor swp1-4 activate
+         - add bgp evpn advertise-all-vni
 
        commit: true
 
@@ -102,6 +104,8 @@
          - add bgp neighbor LEAFS description Internal Fabric Network
          - add bgp neighbor swp1-4 interface peer-group LEAFS
          - add bgp bestpath as-path multipath-relax
+         - add bgp evpn neighbor swp1-4 activate
+         - add bgp evpn advertise-all-vni
 
        commit: true
 
@@ -118,7 +122,6 @@
          - add routing prefix-list ipv4 list1 seq 30 deny any
          - add interface swp25 ip address 172.16.0.0/31
          - add bgp network 10.19.241.12/32
-         - add bgp network 172.16.0.0/31
          - add bgp neighbor 172.16.0.1 remote-as 65001
          - add bgp neighbor SPINES peer-group
          - add bgp neighbor SPINES remote-as external
@@ -127,6 +130,21 @@
          - add bgp neighbor swp29-30 interface peer-group SPINES
          - add bgp ipv4 unicast neighbor SPINES prefix-list list1 out
          - add bgp bestpath as-path multipath-relax
+         - add vrf tenant1
+         - add interface swp25 vrf tenant1
+         - add bgp vrf tenant1 autonomous-system 65201
+         - add bgp vrf tenant1 bestpath as-path multipath-relax
+         - add bgp vrf tenant1 neighbor 172.16.0.1 remote-as 65001
+         - add bgp vrf tenant1 evpn advertise ipv4 unicast
+         - add vlan 4001 vrf tenant1
+         - add vlan 4001 hwaddress 44:38:39:11:00:15
+         - add bgp network 172.16.0.0/31 vrf tenant1
+         - add vxlan vni104001 vxlan id 104001
+         - add vxlan vni104001 bridge access 4001
+         - add vxlan vni104001 bridge learning off
+         - add vxlan vni104001 bridge arp-nd-suppress on
+         - add vxlan vni104001 vxlan local-tunnelip 10.19.241.12
+         - add vrf tenant1 vni 104001
 
        commit: true
 
@@ -143,7 +161,6 @@
          - add routing prefix-list ipv4 list1 seq 30 deny any
          - add interface swp55 ip address 172.16.0.2/31
          - add bgp network 10.19.241.13/32
-         - add bgp network 172.16.0.2/31
          - add bgp neighbor 172.16.0.3 remote-as 65001
          - add bgp neighbor SPINES peer-group
          - add bgp neighbor SPINES remote-as external
@@ -153,6 +170,22 @@
          - add bgp neighbor swp54 interface peer-group SPINES
          - add bgp ipv4 unicast neighbor SPINES prefix-list list1 out
          - add bgp bestpath as-path multipath-relax
+         - add vrf tenant1
+         - add interface swp55 vrf tenant1
+         - add bgp vrf tenant1 autonomous-system 65202
+         - add bgp vrf tenant1 bestpath as-path multipath-relax
+         - add bgp vrf tenant1 neighbor 172.16.0.3 remote-as 65001
+         - add bgp vrf tenant1 evpn advertise ipv4 unicast
+         - add vlan 4001 vrf tenant1
+         - add vlan 4001 hwaddress 44:38:39:11:00:16
+         - add bgp network 172.16.0.2/31 vrf tenant1
+         - add vxlan vni104001 vxlan id 104001
+         - add vxlan vni104001 bridge access 4001
+         - add vxlan vni104001 bridge learning off
+         - add vxlan vni104001 bridge arp-nd-suppress on
+         - add vxlan vni104001 vxlan local-tunnelip 10.19.241.13
+         - add vrf tenant1 vni 104001
+
 
        commit: true
 
@@ -207,6 +240,29 @@
          - add bond bond04 bond slaves swp5
          - add bond bond04 clag id 4
          - add bond bond04 bridge trunk vlans 60
+         - add bgp l2vpn evpn neighbor swp53-54 activate
+         - add bgp l2vpn evpn advertise-all-vni
+         - add vrf tenant1
+         - add vrf tenant1 vni 104001
+         - add vxlan vni104001 vxlan id 104001
+         - add vxlan vni104001 bridge access 4001
+         - add vlan 4001 hwaddress 44:38:39:11:00:11
+         - add vlan 4001 vrf tenant1
+         - add vxlan vni10160 vxlan id 10160
+         - add vxlan vni10160 bridge access 160
+         - add vxlan vni10161 vxlan id 10161
+         - add vxlan vni10161 bridge access 161
+         - add vxlan vni10070 vxlan id 10070
+         - add vxlan vni10070 bridge access 70
+         - add vxlan vni10060 vxlan id 10060
+         - add vxlan vni10060 bridge access 60
+         - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge arp-nd-suppress on
+         - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge learning off
+         - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 vxlan local-tunnelip 10.19.241.14
+         - add vlan 160 vrf tenant1
+         - add vlan 161 vrf tenant1
+         - add vlan 60 vrf tenant1
+         - add vlan 70 vrf tenant1
 
        commit: true
 
@@ -260,6 +316,29 @@
          - add bond bond04 bond slaves swp5
          - add bond bond04 clag id 4
          - add bond bond04 bridge trunk vlans 60
+         - add bgp l2vpn evpn neighbor swp53-54 activate
+         - add bgp l2vpn evpn advertise-all-vni
+         - add vrf tenant1
+         - add vrf tenant1 vni 104001
+         - add vxlan vni104001 vxlan id 104001
+         - add vxlan vni104001 bridge access 4001
+         - add vlan 4001 hwaddress 44:38:39:11:00:12
+         - add vlan 4001 vrf tenant1
+         - add vxlan vni10160 vxlan id 10160
+         - add vxlan vni10160 bridge access 160
+         - add vxlan vni10161 vxlan id 10161
+         - add vxlan vni10161 bridge access 161
+         - add vxlan vni10070 vxlan id 10070
+         - add vxlan vni10070 bridge access 70
+         - add vxlan vni10060 vxlan id 10060
+         - add vxlan vni10060 bridge access 60
+         - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge arp-nd-suppress on
+         - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge learning off
+         - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 vxlan local-tunnelip 10.19.241.15
+         - add vlan 160 vrf tenant1
+         - add vlan 161 vrf tenant1
+         - add vlan 60 vrf tenant1
+         - add vlan 70 vrf tenant1
 
        commit: true
 
@@ -283,4 +362,3 @@
     apt:
       name: traceroute
       update_cache: yes
-      
