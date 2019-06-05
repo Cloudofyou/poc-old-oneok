@@ -96,7 +96,7 @@
        commands:
 
          - add loopback lo ip address 10.19.241.11/32
-         - add bgp autonomous-system 65100
+         - add bgp autonomous-system 65101
          - add bgp network 10.19.241.11/32
          - add bgp neighbor LEAFS peer-group
          - add bgp neighbor LEAFS remote-as external
@@ -215,17 +215,31 @@
          - add interface peerlink.4094 clag priority 100
          - add bridge bridge ports peerlink
          - add bridge stp treeprio 8192
+         - add vrf tenant1
+         - add vrf tenant1 vni 104001
          - add vlan 160 ip address 10.1.212.2/24
          - add vlan 160 ip address-virtual 00:00:5e:00:a0:01 10.1.212.1/24
+         - add vlan 160 vlan-id 160
+         - add vlan 160 vlan-raw-device bridge
+         - add vlan 160 vrf tenant1
          - add bgp ipv4 unicast network 10.1.212.0/24
          - add vlan 161 ip address 10.19.1.2/24
          - add vlan 161 ip address-virtual 00:00:5e:00:a1:01 10.19.1.1/24
+         - add vlan 161 vlan-id 161
+         - add vlan 161 vlan-raw-device bridge
+         - add vlan 161 vrf tenant1
          - add bgp ipv4 unicast network 10.19.1.0/24
          - add vlan 70 ip address 10.18.0.2/24
          - add vlan 70 ip address-virtual 00:00:5e:00:46:01 10.18.0.1/24
+         - add vlan 70 vlan-id 70
+         - add vlan 70 vlan-raw-device bridge
+         - add vlan 70 vrf tenant1
          - add bgp ipv4 unicast network 10.18.0.0/24
          - add vlan 60 ip address 10.18.10.2/24
          - add vlan 60 ip address-virtual 00:00:5e:00:3c:01 10.18.10.1/24
+         - add vlan 60 vlan-id 60
+         - add vlan 60 vlan-raw-device bridge
+         - add vlan 60 vrf tenant1
          - add bgp ipv4 unicast network 10.18.10.0/24
          - add interface swp3 post-up ip link set swp3 promisc on
          - add interface swp5 post-up ip link set swp5 promisc on
@@ -243,8 +257,6 @@
          - add bond bond04 bridge trunk vlans 60
          - add bgp l2vpn evpn neighbor swp53-54 activate
          - add bgp l2vpn evpn advertise-all-vni
-         - add vrf tenant1
-         - add vrf tenant1 vni 104001
          - add vxlan vni104001 vxlan id 104001
          - add vxlan vni104001 bridge access 4001
          - add vlan 4001 hwaddress 44:38:39:11:00:11
@@ -260,10 +272,6 @@
          - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge arp-nd-suppress on
          - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge learning off
          - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 vxlan local-tunnelip 10.19.241.14
-         - add vlan 160 vrf tenant1
-         - add vlan 161 vrf tenant1
-         - add vlan 60 vrf tenant1
-         - add vlan 70 vrf tenant1
 
        commit: true
 
@@ -292,17 +300,31 @@
          - add interface peerlink.4094 clag sys-mac 44:38:39:FF:01:56
          - add bridge bridge ports peerlink
          - add bridge stp treeprio 8192
+         - add vrf tenant1
+         - add vrf tenant1 vni 104001
          - add vlan 160 ip address 10.1.212.3/24
          - add vlan 160 ip address-virtual 00:00:5e:00:a0:01 10.1.212.1/24
+         - add vlan 160 vlan-id 160
+         - add vlan 160 vlan-raw-device bridge
+         - add vlan 160 vrf tenant1
          - add bgp ipv4 unicast network 10.1.212.0/24
          - add vlan 161 ip address 10.19.1.3/24
          - add vlan 161 ip address-virtual 00:00:5e:00:a1:01 10.19.1.1/24
+         - add vlan 161 vlan-id 161
+         - add vlan 161 vlan-raw-device bridge
+         - add vlan 161 vrf tenant1
          - add bgp ipv4 unicast network 10.19.1.0/24
          - add vlan 70 ip address 10.18.0.3/24
          - add vlan 70 ip address-virtual 00:00:5e:00:46:01 10.18.0.1/24
+         - add vlan 70 vlan-id 70
+         - add vlan 70 vlan-raw-device bridge
+         - add vlan 70 vrf tenant1
          - add bgp ipv4 unicast network 10.18.0.0/24
          - add vlan 60 ip address 10.18.10.3/24
          - add vlan 60 ip address-virtual 00:00:5e:00:3c:01 10.18.10.1/24
+         - add vlan 60 vlan-id 60
+         - add vlan 60 vlan-raw-device bridge
+         - add vlan 60 vrf tenant1
          - add bgp ipv4 unicast network 10.18.10.0/24
          - add interface swp3 post-up ip link set swp3 promisc on
          - add interface swp5 post-up ip link set swp5 promisc on
@@ -320,8 +342,6 @@
          - add bond bond04 bridge trunk vlans 60
          - add bgp l2vpn evpn neighbor swp53-54 activate
          - add bgp l2vpn evpn advertise-all-vni
-         - add vrf tenant1
-         - add vrf tenant1 vni 104001
          - add vxlan vni104001 vxlan id 104001
          - add vxlan vni104001 bridge access 4001
          - add vlan 4001 hwaddress 44:38:39:11:00:12
@@ -337,10 +357,6 @@
          - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge arp-nd-suppress on
          - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 bridge learning off
          - add vxlan vni10160,vni10161,vni10070,vni10060,vni104001 vxlan local-tunnelip 10.19.241.15
-         - add vlan 160 vrf tenant1
-         - add vlan 161 vrf tenant1
-         - add vlan 60 vrf tenant1
-         - add vlan 70 vrf tenant1
 
        commit: true
 
