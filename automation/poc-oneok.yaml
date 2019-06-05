@@ -196,6 +196,7 @@
        commands:
 
          - add loopback lo ip address 10.19.241.14/32
+         - add loopback lo clag vxlan-anycast-ip 10.19.241.100
          - add bgp autonomous-system 65203
          - add bgp network 10.19.241.14/32
          - add bgp neighbor SPINES peer-group
@@ -273,6 +274,7 @@
        commands:
 
          - add loopback lo ip address 10.19.241.15/32
+         - add loopback lo clag vxlan-anycast-ip 10.19.241.100
          - add bgp autonomous-system 65204
          - add bgp network 10.19.241.15/32
          - add bgp neighbor SPINES peer-group
