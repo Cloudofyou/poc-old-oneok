@@ -1,12 +1,12 @@
-## POC OneOk
+## POC Southwest 
 
 ### Summary:
 
-This is an Ansible demo which configures the described topology for the OneOk POC.
+This is an Ansible demo which configures the described topology for the Southwest POC.
 
 ### Network Diagram:
 
-![Network Diagram](https://github.com/Cloudofyou/poc-oneok/blob/master/documentation/OneOk-POC-Diag-09.png)
+![Network Diagram](https://github.com/Cloudofyou/poc-southwest/blob/master/documentation/poc-southwest.png)
 
 ### Initializing the demo environment:
 
@@ -22,11 +22,11 @@ First, make sure that the following is currently running on your machine:
 
 3. Copy the Git repo to your local machine:
 
-    ```git clone https://github.com/Cloudofyou/poc-oneok```
+    ```git clone https://github.com/Cloudofyou/poc-southwest```
 
 4. Change directories to the following
 
-    ```cd poc-oneok```
+    ```cd poc-southwest```
 
 6. Run the following:
 
@@ -41,23 +41,19 @@ First, make sure that the following is currently running on your machine:
 
 2. Copy the Git repo unto the oob-mgmt-server:
 
-    ```git clone https://github.com/Cloudofyou/poc-oneok```
+    ```git clone https://github.com/Cloudofyou/poc-southwest```
 
 3. Change directories to the following
 
-    ```poc-oneok/automation```
+    ```poc-southwest/automation```
 
 ### Temporary work arounds until automation is fixed
 
-1. SSH into all 4 of the servers with:
+1. SSH into both of the servers with:
 
    ```ssh server01```
    
    ```ssh server02```
-   
-   ```ssh storage01```
-   
-   ```ssh storage02```
    
 2. Enter the password on each server:
 
@@ -73,20 +69,6 @@ First, make sure that the following is currently running on your machine:
 
     ```./provision.sh```
 
-This will run the automation script and configure the environment.
-
-5. Fix the servers routing table on all 4 servers:
-
-    ```sudo ip route delete default```
-    
-    --On storage01 and storage02 use:
-    
-    ```sudo ip route add default via 10.18.10.1```
-    
-    --On server01 and server02 use:
-    
-    ```sudo ip route add default via 10.1.212.1```
-
 ### Errata
 
 ### Temp
@@ -94,15 +76,6 @@ This will run the automation script and configure the environment.
 ```ansible servers -a `wget -O /home/cumulus/.ssh/authorized_keys "http://192.168.200.254/authorized_keys"` ```
 
 ```ansible storage -a `wget -O /home/cumulus/.ssh/authorized_keys "http://192.168.200.254/authorized_keys"` ```
-
-```ansible servers -a "sudo ip route delete default" ```
-
-```ansible storage -a "sudo ip route delete default" ```
-
-```ansible servers -a "sudo ip route add default via 10.1.212.1" ```
-
-```ansible storage -a "sudo ip route add default via 10.18.10.1" ```
-
 
 1. To shutdown the demo, run the following command from the vx-simulation directory:
 
